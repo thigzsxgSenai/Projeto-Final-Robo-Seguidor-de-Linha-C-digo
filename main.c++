@@ -31,7 +31,7 @@ void frente() {
 
   digitalWrite(dirf, HIGH);
   digitalWrite(dirt, LOW);
-  delay(100);
+  delay(10);
 }
 
 void direita() {
@@ -40,7 +40,7 @@ void direita() {
 
   digitalWrite(dirf, LOW);
   digitalWrite(dirt, HIGH);
-  delay(100);
+  delay(10);
 }
 
 void esquerda() {
@@ -49,7 +49,7 @@ void esquerda() {
 
   digitalWrite(dirf, HIGH);
   digitalWrite(dirt, LOW);
-  delay(100);
+  delay(10);
 }
 
 void parar() {
@@ -58,7 +58,7 @@ void parar() {
 
   digitalWrite(dirf, LOW);
   digitalWrite(dirt, LOW);
-  delay(100);  
+  delay(10);  
 }
 
 void tras() {
@@ -67,46 +67,71 @@ void tras() {
 
   digitalWrite(dirf, LOW);
   digitalWrite(dirt, HIGH);
-  delay(100);
+  delay(10);
 }
 
 void loop() {
 
   // frente
-  if(digitalRead(ESQ) == LOW &&
-     digitalRead(CENTRO) == HIGH &&
-     digitalRead(DIR) == LOW) {
+  if(digitalRead(ESQ) == 0 &&
+     digitalRead(CENTRO) == 1 &&
+     digitalRead(DIR) == 0) {
+      Serial.println("FRENTE");
 
     frente();
   }
 
   // esquerda
-  else if(digitalRead(ESQ) == LOW &&
-          digitalRead(CENTRO) == HIGH &&
-          digitalRead(DIR) == HIGH) {
+  else if(digitalRead(ESQ) == 0 &&
+          digitalRead(CENTRO) == 1 &&
+          digitalRead(DIR) == 1) {
+            Serial.println("ESQUERDA");
+
+    esquerda();
+  }
+
+   // esquerda
+  else if(digitalRead(ESQ) == 0 &&
+          digitalRead(CENTRO) == 0 &&
+          digitalRead(DIR) == 1) {
+            Serial.println("ESQUERDA");
 
     esquerda();
   }
 
   // direita
-  else if(digitalRead(ESQ) == HIGH &&
-          digitalRead(CENTRO) == HIGH &&
-          digitalRead(DIR) == LOW) {
+  else if(digitalRead(ESQ) == 1 &&
+          digitalRead(CENTRO) == 1 &&
+          digitalRead(DIR) == 0) {
+            Serial.println("DIREITA");
+
+    direita();
+  }
+  // direita
+  else if(digitalRead(ESQ) == 1 &&
+          digitalRead(CENTRO) == 0 &&
+          digitalRead(DIR) == 0) {
+            Serial.println("DIREITA");
 
     direita();
   }
 
-  else if(digitalRead(ESQ) == HIGH &&
-          digitalRead(CENTRO) == HIGH &&
-          digitalRead(DIR) == HIGH) {
+  else if(digitalRead(ESQ) == 1 &&
+          digitalRead(CENTRO) == 1 &&
+          digitalRead(DIR) == 1) {
+            Serial.println("PARAR");
 
     parar();
+  } else{
+    Serial.println("PARAR");
+     parar();
   }
 
 
-Serial.print(ESQ);
+Serial.print(digitalRead(ESQ));
 Serial.print(" ");
-Serial.print(CENTRO);
+Serial.print(digitalRead(CENTRO));
 Serial.print(" ");
-Serial.println(DIR);
+Serial.println(digitalRead(DIR));
+Serial.println("**************");
 }
