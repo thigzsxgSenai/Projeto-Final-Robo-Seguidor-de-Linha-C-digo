@@ -31,7 +31,7 @@ void frente() {
 
   digitalWrite(dirf, HIGH);
   digitalWrite(dirt, LOW);
-  delay(200);
+  delay(100);
 }
 
 void direita() {
@@ -40,7 +40,7 @@ void direita() {
 
   digitalWrite(dirf, LOW);
   digitalWrite(dirt, HIGH);
-  delay(200);
+  delay(100);
 }
 
 void esquerda() {
@@ -49,7 +49,7 @@ void esquerda() {
 
   digitalWrite(dirf, HIGH);
   digitalWrite(dirt, LOW);
-  delay(200);
+  delay(100);
 }
 
 void parar() {
@@ -58,7 +58,7 @@ void parar() {
 
   digitalWrite(dirf, LOW);
   digitalWrite(dirt, LOW);
-  delay(200);  
+  delay(100);  
 }
 
 void tras() {
@@ -67,27 +67,46 @@ void tras() {
 
   digitalWrite(dirf, LOW);
   digitalWrite(dirt, HIGH);
-  delay(200);
+  delay(100);
 }
 
 void loop() {
-  //frente
-  if(ESQ == LOW && CENTRO == HIGH && DIR == LOW){
+
+  // frente
+  if(digitalRead(ESQ) == LOW &&
+     digitalRead(CENTRO) == HIGH &&
+     digitalRead(DIR) == LOW) {
+
     frente();
   }
 
-  //esquerda
-  else if(ESQ == HIGH && CENTRO == LOW && DIR == LOW){
-     esqueda();
+  // esquerda
+  else if(digitalRead(ESQ) == LOW &&
+          digitalRead(CENTRO) == HIGH &&
+          digitalRead(DIR) == HIGH) {
+
+    esquerda();
   }
 
-  //direita
-  else if(ESQ == LOW && CENTRO == LOW && DIR == HIGH){
+  // direita
+  else if(digitalRead(ESQ) == HIGH &&
+          digitalRead(CENTRO) == HIGH &&
+          digitalRead(DIR) == LOW) {
+
     direita();
   }
 
-  //parar
-  else{
+  else if(digitalRead(ESQ) == HIGH &&
+          digitalRead(CENTRO) == HIGH &&
+          digitalRead(DIR) == HIGH) {
+
     parar();
   }
+
+
+Serial.print(ESQ);
+Serial.print(" ");
+Serial.print(CENTRO);
+Serial.print(" ");
+Serial.println(DIR);
 }
