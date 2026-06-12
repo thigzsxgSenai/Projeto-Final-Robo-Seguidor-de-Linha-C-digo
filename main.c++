@@ -39,13 +39,13 @@ void direita() {
   digitalWrite(esqt, LOW);
 
   digitalWrite(dirf, LOW);
-  digitalWrite(dirt, HIGH);
+  digitalWrite(dirt, LOW);
   delay(10);
 }
 
 void esquerda() {
   digitalWrite(esqf, LOW);
-  digitalWrite(esqt, HIGH);
+  digitalWrite(esqt, LOW);
 
   digitalWrite(dirf, HIGH);
   digitalWrite(dirt, LOW);
